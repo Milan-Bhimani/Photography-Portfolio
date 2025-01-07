@@ -1,55 +1,115 @@
-.navbar {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-  background-color: #333;
-  color: white;
-  margin: 0;
-}
-
-.navbar li {
-  position: relative;
-}
-
-.navbar li a, .navbar li button {
-  color: white;
-  text-decoration: none;
-  padding: 15px 20px;
-  display: block;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.navbar li button:hover, .navbar li a:hover {
-  background-color: #555;
-}
-
-.menu .dropdown {
-  display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-  padding: 10px 0;
-  list-style: none;
-  margin: 0;
-  border-radius: 4px;
-  min-width: 150px;
-}
-
-.menu .dropdown li {
-  margin: 0;
-}
-
-.menu .dropdown li a {
-  display: block;
-  padding: 10px 20px;
-  color: white;
-  text-decoration: none;
-}
-
-.menu .dropdown li a:hover {
-  background-color: #555;
-}
+/* Navbar Container */
+nav {
+    background-color: #333;
+    padding: 10px 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Navbar List */
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar li {
+    position: relative;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover Effect */
+  .navbar a:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  /* Dropdown Menu */
+  .menu button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu button:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  /* Dropdown List */
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dropdown li {
+    padding: 10px;
+  }
+  
+  .dropdown li a {
+    color: #fff;
+    padding: 10px 15px;
+    display: block;
+  }
+  
+  .dropdown li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  /* Hide Dropdown when Menu is Closed */
+  .menu ul {
+    display: none;
+  }
+  
+  /* Show Dropdown when Menu is Open */
+  .menu.open ul {
+    display: block;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar li {
+      margin: 10px 0;
+    }
+  
+    .menu button {
+      width: 100%;
+    }
+  
+    .dropdown {
+      position: static;
+      box-shadow: none;
+      width: 100%;
+    }
+  
+    .dropdown li a {
+      text-align: center;
+    }
+  }
+  

@@ -22,12 +22,15 @@ const upload = multer({ storage });
 
 const getItems = async (req, res) => {
   try {
-    const items = await Item.find();
-    res.status(200).json(items);
+    const items = await Item.find()
+      .populate('userId', 'username')  // Populate the 'username' field from the User model
+      .exec();
+    res.status(200).json(items); // Send items with populated username
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 const getUserItems = async (req, res) => {
   const userId = req.userId; // Assuming userId is added to the request by authentication middleware

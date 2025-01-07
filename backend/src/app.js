@@ -24,6 +24,17 @@ app.use('/api', itemRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes); // Use user routes
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
-  .catch((error) => console.log(error.message));
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    writeConcern: { w: 'majority' },
+  })
+  .then(() => {
+    console.log(`Connected to MongoDB successfully`);
+    console.log(`Server running on port ${PORT}`);
+    app.listen(PORT);
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+  });

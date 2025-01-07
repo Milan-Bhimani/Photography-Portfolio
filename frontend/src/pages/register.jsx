@@ -22,35 +22,53 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Register</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div>
-        <p>Already have an account?</p>
-        <Link to="/login">
-          <button type="button">Login</button>
-        </Link>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black flex justify-center items-center">
+      <div className="max-w-lg w-full p-8 bg-opacity-90 bg-gray-900 rounded-lg shadow-xl">
+        <h1 className="text-3xl font-bold text-center text-white mb-6">Register</h1>
+
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-4 bg-gray-800 text-white border-2 border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-4 bg-gray-800 text-white border-2 border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-4 bg-gray-800 text-white border-2 border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <button
+            type="submit"
+            className="w-full p-4 bg-teal-700 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-teal-800 transition duration-300"
+          >
+            Register
+          </button>
+        </form>
+
+        <div className="text-center mt-6">
+          <p className="text-gray-400">Already have an account?</p>
+          <Link to="/login">
+            <button
+              type="button"
+              className="mt-2 px-6 py-3 bg-teal-600 text-white text-lg font-semibold rounded-lg hover:bg-teal-700 transition-all"
+            >
+              Login
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import Personaldata from './pages/personaldata.jsx'
 import Profile from './pages/Profile.jsx'
 import About from './pages/About.jsx'
 import Landing from './pages/Landing.jsx'
-import './assets/index.css';
+import './assets/index.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
