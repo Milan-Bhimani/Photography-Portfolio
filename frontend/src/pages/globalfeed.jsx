@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchItems } from '../services/api';
 
-const GlobalFeed = () => {
+const Globalfeed = () => {
   const [items, setItems] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const getItems = async () => {
@@ -11,6 +12,7 @@ const GlobalFeed = () => {
         setItems(data);
       } catch (error) {
         console.error(error);
+        setError('Failed to fetch items. Please try again.');
       }
     };
 
@@ -20,13 +22,18 @@ const GlobalFeed = () => {
   return (
     <div className="container">
       <h1>Global Feed</h1>
+      {error && <p className="error">{error}</p>}
       <ul>
         {items.map((item) => (
-          <li key={item._id}>{item.title}</li>
+          <li key={item._id}>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <img src={`http://localhost:5000${item.imageUrl}`} alt={item.title} style={{ width: '100%', height: 'auto' }} />
+          </li>
         ))}
       </ul>
     </div>
   );
 };
 
-export default GlobalFeed;
+export default Globalfeed;

@@ -1,17 +1,19 @@
-import React from 'react'
-import {Outlet} from 'react-router-dom'
-import Navbar from './components/Navbar'
-const layout = () => {
-    
+import React from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import Navbar from './components/Navbar';
+
+const Layout = () => {
+  const location = useLocation();
+
+  // List of paths where Navbar should not be displayed
+  const excludedPaths = ['/login', '/register', '/'];
+
   return (
     <div>
-      <Navbar />
+      {!excludedPaths.includes(location.pathname) && <Navbar />}
       <Outlet />
-      {/* <footer>
-        <Footer />
-      </footer> */}
     </div>
-  )
-}
+  );
+};
 
-export default layout
+export default Layout;

@@ -19,3 +19,4 @@ export const createItem = (itemData) => API.post('/api/items', itemData, {
   },
 });
 export const deleteItem = (id) => API.delete(`/api/items/${id}`);
+export const fetchUserDetails = () => API.get('/user/me'); // Add this function
