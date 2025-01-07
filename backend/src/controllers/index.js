@@ -29,6 +29,16 @@ const getItems = async (req, res) => {
   }
 };
 
+const getUserItems = async (req, res) => {
+  const userId = req.userId; // Assuming userId is added to the request by authentication middleware
+  try {
+    const items = await Item.find({ userId });
+    res.status(200).json(items);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const createItem = async (req, res) => {
   const { title, description } = req.body;
   const userId = req.userId; // Assuming userId is added to the request by authentication middleware
@@ -57,7 +67,7 @@ const updateItem = async (req, res) => {
     );
     res.status(200).json(updatedItem);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status (400).json({ message: error.message });
   }
 };
 
@@ -76,4 +86,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-export { getItems, createItem, updateItem, deleteItem, upload };
+export { getItems, createItem, updateItem, deleteItem, getUserItems, upload };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { createItem, fetchItems, deleteItem } from '../services/api';
+import { createItem, fetchUserItems, deleteItem } from '../services/api';
 
-const PersonalData = () => {
+const Personaldata = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
@@ -9,16 +9,17 @@ const PersonalData = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const getItems = async () => {
+    const getUserItems = async () => {
       try {
-        const { data } = await fetchItems();
+        const { data } = await fetchUserItems();
         setItems(data);
       } catch (error) {
         console.error(error);
+        setError('Failed to fetch items. Please try again.');
       }
     };
 
-    getItems();
+    getUserItems();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -88,4 +89,4 @@ const PersonalData = () => {
   );
 };
 
-export default PersonalData;
+export default Personaldata;
