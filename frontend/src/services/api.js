@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const API = axios.create({ baseURL: 'https://photography-portfolio-kkqg.onrender.com' });
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce12ad454ee192b912dd2430e1320a5a07475ad8
 
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem('token');
