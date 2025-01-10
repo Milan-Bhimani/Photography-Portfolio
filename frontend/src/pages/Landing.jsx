@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center text-white text-center sm:text-left">
+    <div 
+      className="min-h-screen flex flex-col justify-center items-center text-white text-center sm:text-left"
+      style={{
+        backgroundImage: "url('./back-ground.jpg')", // Replace with your background image URL
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="max-w-7xl mx-auto p-8 bg-opacity-90 bg-gray-900 rounded-lg shadow-xl flex flex-col sm:flex-row items-center justify-center sm:justify-between">
         {/* Text Section */}
         <div className="mb-6 sm:mb-0 sm:w-1/2">
@@ -30,7 +37,7 @@ const Landing = () => {
         {/* Image Section */}
         <div className="w-full sm:w-1/2 flex justify-center sm:justify-end mt-6 sm:mt-0">
           <img 
-            src="./public/Shutter Stories logo.png"  // Make sure to replace this with the correct path to your logo image
+            src="./Shutter_Stories_logo-removebg-preview.png"  // Make sure to replace this with the correct path to your logo image
             alt="Shutter Stories" 
             className="w-3/4 sm:w-full rounded-lg shadow-md"
           />

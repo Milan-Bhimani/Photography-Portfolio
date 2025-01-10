@@ -22,7 +22,14 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black flex justify-center items-center">
+    <div 
+      className="min-h-screen flex justify-center items-center"
+      style={{
+        backgroundImage: "url('./back-ground.jpg')", // Replace with your background image URL
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="max-w-lg w-full p-8 bg-opacity-90 bg-gray-900 rounded-lg shadow-xl">
         <h1 className="text-3xl font-bold text-center text-white mb-6">Register</h1>
 

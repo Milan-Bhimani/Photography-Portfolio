@@ -18,8 +18,36 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+// File filter to only allow image files
+const fileFilter = (req, file, cb) => {
+  // Allow only image files (jpg, jpeg, png, gif, webp)
+  const allowedTypes = /jpg|jpeg|png|gif|webp/;
+  const mimeType = allowedTypes.test(file.mimetype);
+  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
 
+  if (mimeType && extname) {
+    return cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed!'), false);
+  }
+};
+
+const upload = multer({ 
+  storage,
+  fileFilter // Adding the file filter to multer
+});
+
+// Error handling middleware for multer
+const handleError = (err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    return res.status(400).json({ message: 'File upload error: ' + err.message });
+  } else if (err) {
+    return res.status(400).json({ message: err.message });
+  }
+  next();
+};
+
+// Get all items
 const getItems = async (req, res) => {
   try {
     const items = await Item.find()
@@ -31,17 +59,18 @@ const getItems = async (req, res) => {
   }
 };
 
-
+// Get items by user
 const getUserItems = async (req, res) => {
   const userId = req.userId; // Assuming userId is added to the request by authentication middleware
   try {
-    const items = await Item.find({ userId });
+    const items = await Item.find({ userId }).exec();
     res.status(200).json(items);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// Create a new item
 const createItem = async (req, res) => {
   const { title, description } = req.body;
   const userId = req.userId; // Assuming userId is added to the request by authentication middleware
@@ -57,6 +86,7 @@ const createItem = async (req, res) => {
   }
 };
 
+// Update an existing item
 const updateItem = async (req, res) => {
   const { id } = req.params;
   const { title, description } = req.body;
@@ -70,10 +100,11 @@ const updateItem = async (req, res) => {
     );
     res.status(200).json(updatedItem);
   } catch (error) {
-    res.status (400).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
+// Delete an item
 const deleteItem = async (req, res) => {
   const { id } = req.params;
   try {
@@ -89,4 +120,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-export { getItems, createItem, updateItem, deleteItem, getUserItems, upload };
+export { getItems, createItem, updateItem, deleteItem, getUserItems, upload, handleError };

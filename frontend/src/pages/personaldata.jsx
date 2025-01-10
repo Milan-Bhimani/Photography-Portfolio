@@ -47,7 +47,7 @@ const Personaldata = () => {
   const handleDelete = async (id) => {
     try {
       await deleteItem(id);
-      setItems(items.filter(item => item._id !== id));
+      setItems(items.filter((item) => item._id !== id));
     } catch (error) {
       console.error(error);
       setError('Failed to delete the photo. Please try again.');
@@ -55,21 +55,34 @@ const Personaldata = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-800 via-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold text-center text-teal-400 mb-8">Personal Data</h1>
+    <div
+      className="min-h-screen bg-cover bg-center py-12 px-4 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: "url('./back-ground.jpg')",
+      }}
+    >
+      <div className="mt-20 max-w-7xl mx-auto bg-gray-900 bg-opacity-80 shadow-lg rounded-lg p-6">
+        <h1 className="text-4xl font-bold text-teal-400 text-center mb-8">My Chronicles</h1>
 
         {/* Show Options: Upload or Uploaded */}
         <div className="flex justify-center mb-6">
           <button
             onClick={() => setView(view === 'upload' ? '' : 'upload')} // Toggle upload form visibility
-            className={`px-6 py-3 mr-4 rounded-lg font-semibold text-lg transition duration-300 ease-in-out ${view === 'upload' ? 'bg-teal-600 text-white' : 'bg-gray-700 text-gray-200'} hover:bg-teal-700`}
+            className={`px-6 py-3 mr-4 rounded-lg font-semibold text-lg transition duration-300 ease-in-out ${
+              view === 'upload'
+                ? 'bg-teal-600 text-white'
+                : 'bg-gray-700 text-gray-200'
+            } hover:bg-teal-700`}
           >
             Upload
           </button>
           <button
             onClick={() => setView(view === 'uploaded' ? '' : 'uploaded')} // Toggle uploaded items view
-            className={`px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 ease-in-out ${view === 'uploaded' ? 'bg-teal-600 text-white' : 'bg-gray-700 text-gray-200'} hover:bg-teal-700`}
+            className={`px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 ease-in-out ${
+              view === 'uploaded'
+                ? 'bg-teal-600 text-white'
+                : 'bg-gray-700 text-gray-200'
+            } hover:bg-teal-700`}
           >
             Uploaded
           </button>
@@ -77,7 +90,11 @@ const Personaldata = () => {
 
         {/* Render Upload Form or Uploaded Photos Based on View */}
         {view === 'upload' && (
-          <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+            className="space-y-6"
+          >
             <input
               type="text"
               placeholder="Title"
@@ -108,28 +125,35 @@ const Personaldata = () => {
 
         {view === 'uploaded' && (
           <div>
-            {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-            
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Your Uploaded Photos</h2>
-            <ul>
+            {error && (
+              <p className="text-red-500 text-center mt-4">{error}</p>
+            )}
+
+            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">
+              Your Uploaded Photos
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
               {items.map((item) => (
-                <li key={item._id} className="mb-6 p-4 bg-gray-800 border border-gray-600 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                  <p className="text-gray-300">{item.description}</p>
+                <div
+                  key={item._id}
+                  className="p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-xl transition-shadow duration-300 ease-in-out hover:shadow-2xl"
+                >
+                  <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-2 text-gray-400">{item.description}</p>
                   <img
-                    src={`http://localhost:5000${item.imageUrl}`}
+                    src={`http://localhost:5007${item.imageUrl}`}
                     alt={item.title}
-                    className="w-full h-auto mt-4 rounded-lg"
+                    className="mt-4 w-full h-auto rounded-lg cursor-pointer"
                   />
                   <button
                     onClick={() => handleDelete(item._id)}
-                    className="mt-4 px-6 py-3 bg-red-600 rounded-lg text-white text-lg font-semibold transition duration-300 ease-in-out hover:bg-red-700"
+                    className="mt-4 px-6 py-2 bg-red-600 rounded-lg text-white text-sm font-semibold transition duration-300 ease-in-out hover:bg-red-700"
                   >
                     Delete
                   </button>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
       </div>

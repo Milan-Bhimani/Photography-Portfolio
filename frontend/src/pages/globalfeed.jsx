@@ -37,9 +37,14 @@ const Globalfeed = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-800 via-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-gray-900 shadow-lg rounded-lg p-6">
-        <h1 className="text-4xl font-bold text-teal-400 text-center mb-8">Global Feed</h1>
+    <div
+      className="min-h-screen bg-cover bg-center py-12 px-4 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: `url('./back-ground.jpg')`, // Replace with your background image URL
+      }}
+    >
+      <div className="mt-20 max-w-7xl mx-auto bg-gray-900 bg-opacity-80 shadow-lg rounded-lg p-6">
+        <h1 className="text-4xl font-bold text-teal-400 text-center mb-8">The Global Pulse</h1>
 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
@@ -65,7 +70,7 @@ const Globalfeed = () => {
               {item.imageUrl && (
                 <div>
                   <img
-                    src={`http://localhost:5000${item.imageUrl}`}  // Corrected line: Template literal for image URL
+                    src={`http://localhost:5007${item.imageUrl}`} // Corrected line: Template literal for image URL
                     alt={item.title}
                     className="mt-6 w-full h-auto rounded-lg cursor-pointer"
                     onClick={() => toggleDescription(item._id)} // Toggle description visibility on click
