@@ -70,7 +70,7 @@ const Globalfeed = () => {
               {item.imageUrl && (
                 <div>
                   <img
-                    src={`http://localhost:5007${item.imageUrl}`} // Corrected line: Template literal for image URL
+                    src={`https://photography-portfolio-kkqg.onrender.com${item.imageUrl}`} // Corrected line: Template literal for image URL
                     alt={item.title}
                     className="mt-6 w-full h-auto rounded-lg cursor-pointer"
                     onClick={() => toggleDescription(item._id)} // Toggle description visibility on click

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5007' });
+const API = axios.create({ baseURL: 'https://photography-portfolio-kkqg.onrender.com' });
+
 
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem('token');
