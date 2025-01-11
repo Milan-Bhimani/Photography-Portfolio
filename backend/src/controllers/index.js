@@ -20,7 +20,6 @@ const storage = multer.diskStorage({
 
 // File filter to only allow image files
 const fileFilter = (req, file, cb) => {
-  // Allow only image files (jpg, jpeg, png, gif, webp)
   const allowedTypes = /jpg|jpeg|png|gif|webp/;
   const mimeType = allowedTypes.test(file.mimetype);
   const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
@@ -32,9 +31,9 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const upload = multer({ 
+const upload = multer({
   storage,
-  fileFilter // Adding the file filter to multer
+  fileFilter
 });
 
 // Error handling middleware for multer
@@ -42,7 +41,7 @@ const handleError = (err, req, res, next) => {
   if (err instanceof multer.MulterError) {
     return res.status(400).json({ message: 'File upload error: ' + err.message });
   } else if (err) {
-    return res.status(400).json({ message: err.message });
+    return res.status(400).json({ message: 'Error: ' + err.message });
   }
   next();
 };
@@ -50,10 +49,8 @@ const handleError = (err, req, res, next) => {
 // Get all items
 const getItems = async (req, res) => {
   try {
-    const items = await Item.find()
-      .populate('userId', 'username')  // Populate the 'username' field from the User model
-      .exec();
-    res.status(200).json(items); // Send items with populated username
+    const items = await Item.find().populate('userId', 'username').exec();
+    res.status(200).json(items);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -75,8 +72,9 @@ const createItem = async (req, res) => {
   const { title, description } = req.body;
   const userId = req.userId; // Assuming userId is added to the request by authentication middleware
   console.log('Create item request:', req.body, req.file);
-  const imageUrl = req.file ? (`/uploads/${req.file.filename}`) : '';
+  const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
   const newItem = new Item({ title, description, imageUrl, userId });
+
   try {
     await newItem.save();
     res.status(201).json(newItem);
@@ -110,8 +108,10 @@ const deleteItem = async (req, res) => {
   try {
     const item = await Item.findByIdAndDelete(id);
     if (item && item.imageUrl) {
-      console.log('Deleting file:', path.join(__dirname, '../..', item.imageUrl));
-      fs.unlinkSync(path.join(__dirname, '../..', item.imageUrl));
+      const filePath = path.join(__dirname, '../../uploads', item.imageUrl.split('/').pop());
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath); // Delete the file from the file system
+      }
     }
     res.status(200).json({ message: 'Item deleted successfully' });
   } catch (error) {
