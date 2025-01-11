@@ -75,7 +75,7 @@ const createItem = async (req, res) => {
   const { title, description } = req.body;
   const userId = req.userId; // Assuming userId is added to the request by authentication middleware
   console.log('Create item request:', req.body, req.file);
-  const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
+  const imageUrl = req.file ? (`/uploads/${req.file.filename}`) : '';
   const newItem = new Item({ title, description, imageUrl, userId });
   try {
     await newItem.save();
