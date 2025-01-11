@@ -141,10 +141,11 @@ const Personaldata = () => {
                   <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
                   <p className="mt-2 text-gray-400">{item.description}</p>
                   <img
-                    src={`/uploads/${item.imageUrl}`}
-                    alt={item.title}
-                    className="mt-4 w-full h-auto rounded-lg cursor-pointer"
-                  />
+  src={`http://photography-portfolio-six.vercel.app/uploads/${item.imageUrl}`}  // Ensure correct path
+  alt={item.title}
+  className="mt-4 w-full h-auto rounded-lg cursor-pointer"
+/>
+
                   <button
                     onClick={() => handleDelete(item._id)}
                     className="mt-4 px-6 py-2 bg-red-600 rounded-lg text-white text-sm font-semibold transition duration-300 ease-in-out hover:bg-red-700"
