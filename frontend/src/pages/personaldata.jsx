@@ -141,7 +141,7 @@ const Personaldata = () => {
                   <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
                   <p className="mt-2 text-gray-400">{item.description}</p>
                   <img
-                    src={`https://photography-portfolio-kkqg.onrender.com${item.imageUrl}`}
+                    src={`https://photography-portfolio-six.vercel.app${item.imageUrl}`}
                     alt={item.title}
                     className="mt-4 w-full h-auto rounded-lg cursor-pointer"
                   />
