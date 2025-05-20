@@ -6,7 +6,7 @@ const Landing = () => {
     <div 
       className="min-h-screen flex flex-col justify-center items-center text-white text-center sm:text-left"
       style={{
-        backgroundImage: "url('./back-ground.jpg')", // Replace with your background image URL
+        backgroundImage: "url('./back-ground.jpg')", 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -37,7 +37,7 @@ const Landing = () => {
         {/* Image Section */}
         <div className="w-full sm:w-1/2 flex justify-center sm:justify-end mt-6 sm:mt-0">
           <img 
-            src="./Shutter_Stories_logo-removebg-preview.png"  // Make sure to replace this with the correct path to your logo image
+            src="./Shutter_Stories_logo-removebg-preview.png"  
             alt="Shutter Stories" 
             className="w-3/4 sm:w-full rounded-lg shadow-md"
           />
