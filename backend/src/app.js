@@ -12,6 +12,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const uri = "mongodb+srv://milanhbhimani:kE82U38OwadAenoI@cluster0.yj20z.mongodb.net/PhotographyServer"
 
 // Define __filename and __dirname in ES module
 const __filename = fileURLToPath(import.meta.url);
@@ -25,14 +26,14 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes); // Use user routes
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGO_URI || uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     writeConcern: { w: 'majority' },
   })
   .then(() => {
     console.log(`Connected to MongoDB successfully`);
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
     app.listen(PORT);
   })
   .catch((error) => {

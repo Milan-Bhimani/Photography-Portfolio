@@ -5,7 +5,7 @@ const About = () => {
     <div
       className="min-h-screen bg-cover bg-center py-12 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundImage: "url('./back-ground.jpg')", // Replace with your background image URL
+        backgroundImage: "url('./back-ground.jpg')", 
       }}
     >
       <div className="max-w-7xl mx-auto bg-gray-900 bg-opacity-80 shadow-lg rounded-lg p-8 mt-16">
