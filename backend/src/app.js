@@ -12,8 +12,6 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const uri = "mongodb+srv://milanhbhimani:kE82U38OwadAenoI@cluster0.yj20z.mongodb.net/PhotographyServer"
-
 // Define __filename and __dirname in ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
